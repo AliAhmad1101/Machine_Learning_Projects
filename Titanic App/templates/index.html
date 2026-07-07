@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titanic Survival Prediction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'style.css')}}">
+</head>
+<body>
+
+  <!-- ============ 2D SCENE ============ -->
+  <div class="scene">
+    <div class="stars">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="moon"></div>
+    <div class="gull g1"></div>
+    <div class="gull g2"></div>
+    <div class="gull g3"></div>
+
+    <div class="iceberg"><div class="body"></div></div>
+
+    <div class="ship">
+      <div class="smoke s1"></div>
+      <div class="smoke s2"></div>
+      <div class="smoke s3"></div>
+      <div class="funnel f1"></div>
+      <div class="funnel f2"></div>
+      <div class="funnel f3"></div>
+      <div class="deck"></div>
+      <div class="hull"></div>
+      <div class="bow-light"></div>
+    </div>
+
+    <div class="sea">
+      <div class="wave-line w1"></div>
+      <div class="wave-line w2"></div>
+      <div class="wave-line w3"></div>
+      <div class="wave-line w4"></div>
+    </div>
+  </div>
+  <div class="vignette"></div>
+
+  <!-- ============ CARD ============ -->
+  <div class="stage">
+    <div class="card">
+
+      <div class="header">
+        <div class="emblem">&#9973;</div>
+        <h1 class="title">Titanic Survival Prediction</h1>
+        <p class="subtitle">Predict whether a passenger would have survived using a Machine Learning model.</p>
+        <div class="divider"></div>
+      </div>
+
+      <form action="/predict" method="POST">
+
+        <div class="row-2">
+          <div class="field">
+            <label for="pclass">Passenger Class</label>
+            <select id="pclass" name="pclass" required>
+              <option value="" disabled selected>Select class</option>
+              <option value="1">1 &mdash; First Class</option>
+              <option value="2">2 &mdash; Second Class</option>
+              <option value="3">3 &mdash; Third Class</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Select gender</option>
+              <option value="0">Male</option>
+              <option value="1">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="e.g. 29" min="0" max="120" step="1" required>
+          </div>
+
+          <div class="field">
+            <label for="fare">Fare</label>
+            <input type="number" id="fare" name="fare" placeholder="e.g. 72.50" min="0" step="0.01" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="embarked">Embarked</label>
+          <select id="embarked" name="embarked" required>
+            <option value="" disabled selected>Select port of embarkation</option>
+            <option value="0">Cherbourg (C)</option>
+            <option value="1">Queenstown (Q)</option>
+            <option value="2">Southampton (S)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="predict-btn">Predict Survival</button>
+
+      </form>
+
+  
+      <div class="result-wrap">
+        <div class="result-card">
+          <div class="result-label">Prediction Result</div>
+          <div class="result-value">{{ prediction }}</div>
+        </div>
+      </div>
+
+
+      <div class="footer">
+        Powered by <b>Machine Learning</b> &bull; <b>Logistic Regression</b> &bull; <b>Flask</b>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
